@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="br">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title> Login Page </title>
+    </head>
+    <body>
+        <div class="container">
+            <form action="" id="loginForm">
+                <h1>Login</h1>
+
+                <input type="text" id="username" class="form-control" placeholder="Insira seu Username...">
+                <input type="password" id="password" class="form-control" placeholder="Insira sua Senha...">
+                
+                <input type="checkbox" id="manter"> Permanecer Conectado?
+                <button type="submit">Login</button>
+
+                
+                <a href="registerPage.html">Cadastrar novo login</a>
+            </form>     
+        </div>
+           
+        <script>
+            let loginForm = document.getElementById("loginForm");
+
+            loginForm.addEventListener("submit", (e)=> {
+                e.preventDefault();
+
+                let username = document.getElementById("username");
+                let password = document.getElementById("password");
+                let manter = document.getElementById("manter");
+                
+                if (username.value == "" || password.value == "") {
+                    alert("Insira valor em ambos os campos!");
+
+                } else if (null === localStorage.getItem("logins")){
+                    const temptext = {"admin":"admin"};
+                    localStorage.setItem("logins", JSON.stringify(temptext));
+
+                } else {
+                    let loginJson = JSON.parse(localStorage.getItem("logins"));
+                    Object.keys(loginJson).forEach(function(uname){
+                        if(username.value == uname && password.value == loginJson[uname] ){
+                            localStorage.setItem("manter", manter.checked);
+                            password.value = "";
+                            username.value = "";
+                            window.location.replace('index.html');
+                        }
+                    })
+                    alert("Senha Incorreta!");
+                    password.value = "";
+                }
+            });
+        </script>
+    </body>
+</html>

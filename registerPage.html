@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="br">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title>Cadastrar</title>
+    </head>
+    <body>
+        <div class="container">
+            <form action="" id="cadastroForm">
+                <h1>Cadastrar</h1>
+
+                <input type="text" id="username" class="form-control" placeholder="Insira seu novo Username...">
+                <input type="text" id="password" class="form-control" placeholder="Insira sua nova Senha...">
+                
+                <button type="submit">Cadastrar</button>
+            </form>     
+        </div>
+        <script>
+            let loginForm = document.getElementById("cadastroForm");
+
+            loginForm.addEventListener("submit", (e)=> {
+                e.preventDefault();
+
+                let username = document.getElementById("username");
+                let password = document.getElementById("password");
+                
+                let loginText = "";
+                if (null === localStorage.getItem("logins")){
+                    const temptext = {"admin":"admin"};
+                    localStorage.setItem("logins", JSON.stringify(temptext));
+                }
+                loginText = localStorage.getItem("logins");
+
+                var loginJson = JSON.parse(loginText);
+
+
+                if (username.value == "" || password.value == "") {
+                    alert("Insira valor em ambos os campos!");
+                } else {
+                    let jaExiste = false;
+                    Object.keys(loginJson).forEach(function(uname){
+                        if(username.value == uname){
+                            password.value = "";
+                            username.value = "";
+                            alert("usuario ja existe!");
+                            jaExiste = true;
+                        }
+                    })
+                    if (!jaExiste){
+
+                        loginJson[username.value] = password.value;
+                        localStorage.setItem("logins", JSON.stringify(loginJson));
+                        alert("cadastrado usario \"" + username.value + "\" com senha \""+ password.value + "\"");
+                        password.value = "";
+                        username.value = "";
+                        window.location.replace('loginPage.html');
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

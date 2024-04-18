@@ -1,0 +1,48 @@
+col{
+  align-items: center;
+}
+html{
+  font-family: arial;
+}
+.container{
+  display: flex;
+  align-items: center;
+}
+form {
+  max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding-top: 1px;
+    border: 3px solid #f1f1f1;
+  }
+  
+  /* Full-width inputs */
+  input[type=text], input[type=password]{
+    width: 100%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  
+  /* Set a style for all buttons */
+  button {
+    font-size: 100%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+  }
+  
+  /* Add a hover effect for buttons */
+  button:hover {
+    opacity: 0.9;
+  }

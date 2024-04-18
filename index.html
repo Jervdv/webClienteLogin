@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="br">
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <title> Login Page </title>
+    </head>
+    <body>
+        <div class="container">
+            <form action="" id="loginForm">
+                <h1>Pagina inicial</h1>
+                
+                <button type="submit">Sair</button>
+                
+            </form>     
+        </div>
+        <script>
+            let loginForm = document.getElementById("loginForm");
+
+            loginForm.addEventListener("submit", (e)=> {
+                e.preventDefault();
+                window.location='loginPage.html';
+            });
+        </script>
+        
+    </body>
+</html>
