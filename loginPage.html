@@ -26,29 +26,29 @@
             loginForm.addEventListener("submit", (e)=> {
                 e.preventDefault();
 
-                let username = document.getElementById("username");
-                let password = document.getElementById("password");
+                let usernameField = document.getElementById("username");
+                let passwordField = document.getElementById("password");
                 let manter = document.getElementById("manter");
                 
                 if (username.value == "" || password.value == "") {
                     alert("Insira valor em ambos os campos!");
 
                 } else if (null === localStorage.getItem("logins")){
-                    const temptext = {"admin":"admin"};
+                    const temptext  = [{uname:"admin", pw:"admin"}];
                     localStorage.setItem("logins", JSON.stringify(temptext));
-
+                
                 } else {
                     let loginJson = JSON.parse(localStorage.getItem("logins"));
-                    Object.keys(loginJson).forEach(function(uname){
-                        if(username.value == uname && password.value == loginJson[uname] ){
-                            localStorage.setItem("manter", manter.checked);
+                    for(let i = 0; i <  loginJson.length; i++){
+                        if(loginJson[i].uname == usernameField.value && loginJson[i].pw == passwordField.value){
                             password.value = "";
                             username.value = "";
-                            window.location.replace('index.html');
+                            location.replace("index.html");
                         }
-                    })
+                    }
                     alert("Senha Incorreta!");
                     password.value = "";
+                    passwordField.focus();
                 }
             });
         </script>

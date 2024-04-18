@@ -7,12 +7,13 @@
     <body>
         <div class="container">
             <form action="" id="cadastroForm">
-                <h1>Cadastrar</h1>
+                <h2>Cadastrar novo Login</h2>
 
                 <input type="text" id="username" class="form-control" placeholder="Insira seu novo Username...">
                 <input type="text" id="password" class="form-control" placeholder="Insira sua nova Senha...">
                 
                 <button type="submit">Cadastrar</button>
+                <a href="loginPage.html">Retornar</a>
             </form>     
         </div>
         <script>
@@ -21,12 +22,12 @@
             loginForm.addEventListener("submit", (e)=> {
                 e.preventDefault();
 
-                let username = document.getElementById("username");
-                let password = document.getElementById("password");
+                let usernameField = document.getElementById("username");
+                let passwordField = document.getElementById("password");
                 
                 let loginText = "";
                 if (null === localStorage.getItem("logins")){
-                    const temptext = {"admin":"admin"};
+                    const temptext  = [{uname:"admin", pw:"admin"}];
                     localStorage.setItem("logins", JSON.stringify(temptext));
                 }
                 loginText = localStorage.getItem("logins");
@@ -34,21 +35,26 @@
                 var loginJson = JSON.parse(loginText);
 
 
-                if (username.value == "" || password.value == "") {
+                if (usernameField.value == "" || passwordField.value == "") {
                     alert("Insira valor em ambos os campos!");
                 } else {
                     let jaExiste = false;
-                    Object.keys(loginJson).forEach(function(uname){
-                        if(username.value == uname){
-                            password.value = "";
-                            username.value = "";
+                    for(let i = 0; i <  loginJson.length; i++){
+                        if(loginJson[i].uname == usernameField.value){
+                            passwordField.value = "";
+                            usernameField.value = "";
                             alert("usuario ja existe!");
                             jaExiste = true;
+                            usernameField.focus();
+                            break;
                         }
-                    })
+                    }
                     if (!jaExiste){
-
-                        loginJson[username.value] = password.value;
+                        let newUser = {
+                            "uname":username.value,
+                            "pw": password.value
+                        }
+                        loginJson.push(newUser);
                         localStorage.setItem("logins", JSON.stringify(loginJson));
                         alert("cadastrado usario \"" + username.value + "\" com senha \""+ password.value + "\"");
                         password.value = "";
