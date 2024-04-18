@@ -40,15 +40,19 @@
                 } else {
                     let loginJson = JSON.parse(localStorage.getItem("logins"));
                     for(let i = 0; i <  loginJson.length; i++){
-                        if(loginJson[i].uname == usernameField.value && loginJson[i].pw == passwordField.value){
-                            password.value = "";
-                            username.value = "";
-                            location.replace("index.html");
-                        }
+                        if(loginJson[i].uname == usernameField.value){
+                            if( loginJson[i].pw == passwordField.value){
+                                password.value = "";
+                                username.value = "";
+                                location.replace("index.html");
+
+                            } else {
+                                alert("Senha Incorreta!");
+                                password.value = "";
+                                passwordField.focus();
+                            }
+                        } 
                     }
-                    alert("Senha Incorreta!");
-                    password.value = "";
-                    passwordField.focus();
                 }
             });
         </script>
