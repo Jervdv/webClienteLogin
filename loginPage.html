@@ -29,6 +29,11 @@
                 let usernameField = document.getElementById("username");
                 let passwordField = document.getElementById("password");
                 let manter = document.getElementById("manter");
+
+                if (null === localStorage.getItem("logins")){
+                    const temptext  = [{uname:"admin", pw:"admin"}];
+                    localStorage.setItem("logins", JSON.stringify(temptext));
+                }
                 
                 if (username.value == "" || password.value == "") {
                     alert("Insira valor em ambos os campos!");
