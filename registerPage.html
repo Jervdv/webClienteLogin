@@ -39,16 +39,16 @@
                     alert("Insira valor em ambos os campos!");
                 } else {
                     let jaExiste = false;
-                    for(let i = 0; i <  loginJson.length; i++){
-                        if(loginJson[i].uname == usernameField.value){
+                    loginJson.forEach(user => {  
+                        if(user.uname == usernameField.value){
                             passwordField.value = "";
                             usernameField.value = "";
                             alert("usuario ja existe!");
                             jaExiste = true;
                             usernameField.focus();
-                            break;
                         }
-                    }
+                    });
+                    
                     if (!jaExiste){
                         let newUser = {
                             "uname":username.value,

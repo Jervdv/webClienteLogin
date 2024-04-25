@@ -31,8 +31,12 @@
                 let manter = document.getElementById("manter");
 
                 if (null === localStorage.getItem("logins")){
+                    let newMap = new Map();
+                    let newUuid = crypto.randomUUID();
+                    newMap.set("admin", {pw: "admin", uuid : newUuid});
                     const temptext  = [{uname:"admin", pw:"admin"}];
                     localStorage.setItem("logins", JSON.stringify(temptext));
+                    console.log(JSON.stringify(newMap));
                 }
                 
                 if (username.value == "" || password.value == "") {
@@ -44,9 +48,10 @@
                 
                 } else {
                     let loginJson = JSON.parse(localStorage.getItem("logins"));
-                    for(let i = 0; i <  loginJson.length; i++){
-                        if(loginJson[i].uname == usernameField.value){
-                            if( loginJson[i].pw == passwordField.value){
+                    loginJson.forEach(user => {
+                        if( user.uname == usernameField.value){
+                            if(user.pw == passwordField.value){
+                                localStorage.setItem("loggeduser", username.value);
                                 password.value = "";
                                 username.value = "";
                                 location.replace("index.html");
@@ -56,8 +61,8 @@
                                 password.value = "";
                                 passwordField.focus();
                             }
-                        } 
-                    }
+                        }
+                    });
                 }
             });
         </script>
