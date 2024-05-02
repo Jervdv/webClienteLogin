@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="br">
-    <head>
-        <link rel="stylesheet" href="style.css">
-        <title> Login Page </title>
-    </head>
-    <body>
-        <div class="container">
-            <form action="" id="loginForm">
-                <h1>Pagina inicial</h1>
-                
-                <button type="submit">Sair</button>
-                
-            </form>     
-        </div>
-        <script>
-            let loginForm = document.getElementById("loginForm");
 
-            loginForm.addEventListener("submit", (e)=> {
-                e.preventDefault();
-                window.location='loginPage.html';
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title> Pagina Principal </title>
+</head>
+
+<body id="body">
+    <div class="container">
+        <form action="" id="exitForm">
+            <h1 id="greet"></h1>
+            <button type="submit" , id="btSair">Sair</button>
+        </form>
+    </div>
+    <form action="" id="novaLista">
+        Nome da lista: <input type="text" id="nomelista">
+        <button type="submit" id="btAdicionar">Adicionar</button>
+    </form>
+    <script>
+        let btsair = document.getElementById("btSair");
+        let newList = document.getElementById("novaLista");
+
+        btsair.addEventListener('click', () => {
+            console.log("oi");
+            localStorage.setItem("loggeduser", null);
+            localStorage.setItem("manter", false);
+            setTimeout(function () {
+                location.replace('loginPage.html');
+            }, 0);
+        });
+
+          window.onload = ()=>{
+             const logado = localStorage.getItem("loggeduser");
+             if ("null" == logado){
+                 location.replace("loginPage.html");
+             } else{
+                 document.getElementById("greet").textContent = "Olá "+ logado +"!";
+             }
+         }
+
+        /* document.getElementById("body").addEventListener("load", () => {
+            if (false == localStorage.getItem("manter")) {
+                location.replace("loginPage.html");
+            }
+        }); */
+
+
+
+        newList.addEventListener("submit", (e) => {
+            e.preventDefault();
+            let loggeduname = localStorage.getItem("loggeduser");
+            let loginJson = JSON.parse(localStorage.getItem("logins"));
+            loginJson.forEach(user => {
+                if (user.name == loggeduname) {
+
+                }
             });
-        </script>
-        
-    </body>
+        });
+
+    </script>
+
+</body>
+
 </html>
