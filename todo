@@ -1,2 +1,3 @@
 [x]colocar mais campos no cadastro ( endereço, email, etc); coisas que nao sera usadas no login
-[] 25/04, criar uma lista vinculada ao usuario, ( - nome da lista; - data; ) usar crypto.randomuui() para gera id da lista
+[x] 25/04, criar uma lista vinculada ao usuario, ( - nome da lista; - data; ) usar crypto.randomuui() para gera id da lista
+[] 02/05 criar uma forma de transformar um json pra classe e classe pra json

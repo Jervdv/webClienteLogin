@@ -5,9 +5,19 @@ html{
   font-family: arial;
 }
 .container{
-  display: flex;
+  display: flexbox;
   align-items: center;
 }
+table {
+  max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+    padding-top: 1px;
+    border: 3px solid #f1f1f1;
+  }
+
 form {
   max-width: 300px;
     margin: 0 auto;

@@ -5,18 +5,23 @@
     <link rel="stylesheet" href="style.css">
     <title> Pagina Principal </title>
 </head>
-
 <body id="body">
     <div class="container">
         <form action="" id="exitForm">
             <h1 id="greet"></h1>
             <button type="submit" , id="btSair">Sair</button>
         </form>
+        <form action="" id="novaLista">
+            Nome da lista: <input type="text" id="nomelista">
+            <button type="submit" id="btAdicionar">Adicionar</button>
+        </form>
+        <table>
+            <thead>
+                <th>UUID</th>
+                <th>Nome</th>
+            </thead>
+        </table>
     </div>
-    <form action="" id="novaLista">
-        Nome da lista: <input type="text" id="nomelista">
-        <button type="submit" id="btAdicionar">Adicionar</button>
-    </form>
     <script>
         let btsair = document.getElementById("btSair");
         let newList = document.getElementById("novaLista");
@@ -45,8 +50,8 @@
             let loggeduname = localStorage.getItem("loggeduser");
             let loginJson = JSON.parse(localStorage.getItem("logins"));
             let listasObj = JSON.parse(localStorage.getItem("listas"));
-            
-            if(listasObj == null){
+
+            if (listasObj == null) {
                 listasObj = {}
             }
 
