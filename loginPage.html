@@ -22,58 +22,7 @@
         </form>
     </div>
 
-    <script>
-        window.onload = function ()  {
-            if(localStorage.getItem("manter") == "true"){
-                if( "null" != localStorage.getItem("loggeduser")){
-                    location.replace("index.html");
-                } else{
-                    localStorage.setItem("manter", false);
-                }
-            } else {
-                localStorage.setItem("loggeduser", null);
-            }
-        } //da clear no usuario logado
-
-        let loginForm = document.getElementById("loginForm");
-
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let usernameField = document.getElementById("username");
-            let passwordField = document.getElementById("password");
-            let cbmanter = document.getElementById("manter");
-
-            if (null === localStorage.getItem("logins")) {
-                const newtext = {
-                    admin: {
-                        pw: "admin",
-                        email: "admin@email.com",
-                        listas: [],
-                    }
-                }
-                localStorage.setItem("logins", JSON.stringify(newtext));
-            }
-
-            if (username.value == "" || password.value == "") {
-                alert("Insira valor em ambos os campos!");
-
-            } else {
-                let loginJson = JSON.parse(localStorage.getItem("logins"));
-                if (passwordField.value == loginJson[usernameField.value].pw) {
-                    localStorage.setItem("loggeduser", username.value);
-                    localStorage.setItem("manter", cbmanter.checked );
-                    password.value = "";
-                    username.value = "";
-                    location.replace("index.html");
-                } else {
-                    alert("Senha Incorreta!");
-                    password.value = "";
-                    passwordField.focus();
-                }
-            }
-        });
-    </script>
+    <script type="module" src="loginPage.js"></script>
 </body>
 
 </html>

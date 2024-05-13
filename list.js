@@ -4,12 +4,13 @@ class List {
         this.name = name;
         this.creationDate = new Date();
         this.uuid = crypto.randomUUID();
-        this.items = new Set();
+        this.items = [];
     }
 
     addItem(item) {
-        this.items.add(item);
+        this.items.push(item);
     }
+
 
     removeItem(item) {
         const index = this.items.indexOf(item);
@@ -18,28 +19,28 @@ class List {
         }
     }
 
-    getListFromUUID(uuid){
-        
-    }
 
     toJSON() {
         return {
             name: this.name,
-            creatioDate: this.creationDate,
-            uui: this.uuid,
-            items: Array.from(this.items),
+            uuid: this.uuid,
+            creationDate: this.creationDate,
+            items: this.items,
         };
     }
 
-    static fromJSON(json) {
-        const newlist = new List(json.name);
-        json.forEach(itemJson => {
-            const item = Item.fromJSON(itemJson);
-            this.list.items.add(item);
-        });
-        return newlist;
+    static arrayFromJSON(listsjson) {
+        var listArray = []
+        for (const list of listsjson) {
+            var newlist = new List(list.name); 
+            newlist.items =  Item.fromJSON(list.items);
+            newlist.creationDate = list.creationDate;
+            newlist.uuid = list.uuid;
+            listArray.push(newlist)
+        }
+        return listArray;
     }
-    
+
 }
 
 import { Item } from './item.js';

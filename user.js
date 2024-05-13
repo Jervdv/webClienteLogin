@@ -8,8 +8,8 @@ class User{
     }
     
     addList(list){
-        this.lists.push(list);
-    }
+        this.lists.add(list.uuid);
+    }   
     removeList(list) {
         const index = this.lists.indexOf(list);
         if (index !== -1) {
@@ -21,11 +21,11 @@ class User{
             name: this.name,
             email: this.email,
             pw: this.pw,
-            lists: Array.from(this.lists).map(list => list.uuid)
+            lists: this.lists
         };
     }
 
-    static fromJSON(userjson, listsjson) {
+    static fromJSON(userjson, listArray) {
         const user = new User(userjson.name, userjson.pw, userjson.email);
         for (const listofuser of userjson.lists) {
             user.lists.addList(listsjson.listofuser);

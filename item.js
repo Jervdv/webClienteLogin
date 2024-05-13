@@ -1,4 +1,3 @@
-
 class Item {
     constructor(name, description) {
         this.name = name;
@@ -11,8 +10,17 @@ class Item {
         };
     }
 
-    static fromJSON(json) {
-        return new Item(json.name, json.description);
+    static fromJSON(itemsJson) {
+        var itemArray = []
+        for (const item of itemsJson) {
+            var newItem = new Item(item.name, item.description)
+            itemArray.push(newItem);
+        }
+        return itemArray;
+    }
+
+    static testFunc(){
+        console.log("Estamos em uma classe item");
     }
 }
 
