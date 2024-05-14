@@ -4,11 +4,11 @@ class User{
         this.name = name;
         this.pw = pw;
         this.email = email;
-        this.lists = new Set();
+        this.lists = []
     }
     
     addList(list){
-        this.lists.add(list.uuid);
+        this.lists.push(list.uuid);
     }   
     removeList(list) {
         const index = this.lists.indexOf(list);
@@ -25,16 +25,16 @@ class User{
         };
     }
 
-    static fromJSON(userjson, listArray) {
-        const user = new User(userjson.name, userjson.pw, userjson.email);
-        for (const listofuser of userjson.lists) {
-            user.lists.addList(listsjson.listofuser);
+    static arrayfromJSON(userjson) {
+        var userArray = []
+        for (const user of userjson) {
+            var newUser = new User(user.name, user.pw, user.email); 
+            newUser.lists = user.lists
+            userArray.push(newUser)
         }
-        return user;
+        return userArray;
     }
     
 }
-
-import { List } from './list.js';
 
 export { User };
