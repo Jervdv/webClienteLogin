@@ -25,6 +25,7 @@ loginForm.addEventListener("submit", (e) => {
     let userJson;
 
     if (null == localStorage.getItem("users") || "null" == localStorage.getItem("users")) {
+        alert("localstorage corrompido?");
         const newUser = new User("Admin", "admin", "admin@email.com");
         userList.push(newUser);
         localStorage.setItem("users", JSON.stringify(userList));

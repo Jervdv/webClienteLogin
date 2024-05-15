@@ -22,50 +22,7 @@
             </thead>
         </table>
     </div>
-    <script>
-        let btsair = document.getElementById("btSair");
-        let newList = document.getElementById("novaLista");
-        let nomeFIeld = document.getElementById("nomelista");
-
-        btsair.addEventListener('click', () => {
-            console.log("oi");
-            localStorage.setItem("loggeduser", null);
-            localStorage.setItem("manter", false);
-            setTimeout(function () {
-                location.replace('loginPage.html');
-            }, 0);
-        });
-
-        window.onload = () => {
-            const logado = localStorage.getItem("loggeduser");
-            if ("null" == logado) {
-                location.replace("loginPage.html");
-            } else {
-                document.getElementById("greet").textContent = "Olá " + logado + "!";
-            }
-        }
-
-        newList.addEventListener("submit", (e) => {
-            e.preventDefault();
-            let loggeduname = localStorage.getItem("loggeduser");
-            let loginJson = JSON.parse(localStorage.getItem("logins"));
-            let listasObj = JSON.parse(localStorage.getItem("listas"));
-
-            if (listasObj == null) {
-                listasObj = {}
-            }
-
-            let newuuid = crypto.randomUUID();
-            listasObj[newuuid] = {
-                nome: nomeFIeld.value,
-            }
-            loginJson[loggeduname].listas.push(newuuid);
-            localStorage.setItem("logins", JSON.stringify(loginJson));
-            localStorage.setItem("listas", JSON.stringify(listasObj));
-        });
-
-
-    </script>
+    <script type="module" src="index.js"></script>
 
 </body>
 
