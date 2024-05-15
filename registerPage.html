@@ -20,62 +20,7 @@
             <a href="loginPage.html">Retornar</a>
         </form>
     </div>
-    <script>
-        let loginForm = document.getElementById("cadastroForm");
-
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            let usernameField = document.getElementById("username");
-            let passwordField = document.getElementById("password");
-            let emailField = document.getElementById("email");
-
-            let loginText = "";
-            if (null === localStorage.getItem("logins")) {
-                const newtext = {
-                    admin: {
-                        pw: "admin",
-                        email: "admin@email.com",
-                        listas: [],
-                    }
-                }
-                localStorage.setItem("logins", JSON.stringify(newtext));
-            }
-
-            loginText = localStorage.getItem("logins");
-            var loginJson = JSON.parse(loginText);
-
-            if (usernameField.value == "" || passwordField.value == "") {
-                alert("Insira valor em ambos os campos!");
-            } else {
-                let jaExiste = false;
-                Object.keys(loginJson).forEach(user => {
-                    if (usernameField.value == user) {
-                        usernameField.value = "";
-                        alert("usuario ja existe!");
-                        jaExiste = true;
-                        usernameField.focus();
-                    }
-                });
-
-
-                if (!jaExiste) {
-                    loginJson[usernameField.value] =
-                    {
-                        pw: passwordField.value,
-                        email: emailField.value,
-                        listas: [],
-                    }
-
-                    localStorage.setItem("logins", JSON.stringify(loginJson));
-                    alert("cadastrado usario \"" + username.value + "\" com senha \"" + password.value + "\"");
-                    password.value = "";
-                    username.value = "";
-                    window.location.replace('loginPage.html');
-                }
-            }
-        });
-    </script>
+    <script type="module" src="registerPage.js"></script>
 </body>
 
 </html>
