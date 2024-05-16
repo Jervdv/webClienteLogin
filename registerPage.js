@@ -7,7 +7,7 @@ loginForm.addEventListener("submit", (e) => {
     let usernameField = document.getElementById("username");
     let passwordField = document.getElementById("password");
     let emailField = document.getElementById("email");
-    let userJson, userList
+    let userJson, userList = []
 
     let loginText = "";
     if (null === localStorage.getItem("users")) {
