@@ -8,6 +8,7 @@ html{
   display: flexbox;
   align-items: center;
 }
+
 table {
   max-width: 300px;
     margin: 0 auto;
